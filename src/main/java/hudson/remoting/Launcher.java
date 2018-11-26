@@ -1,18 +1,18 @@
 /*
  * The MIT License
- * 
+ *
  * Copyright (c) 2004-2010, Sun Microsystems, Inc., Kohsuke Kawaguchi
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -186,7 +186,7 @@ public class Launcher {
     @CheckForNull
     @Option(name="-loggingConfig",usage="Path to the property file with java.util.logging settings")
     public File loggingConfigFilePath = null;
-    
+
     @Option(name = "-cert",
             usage = "Specify additional X.509 encoded PEM certificates to trust when connecting to Jenkins " +
                     "root URLs. If starting with @ then the remainder is assumed to be the name of the " +
@@ -540,7 +540,7 @@ public class Launcher {
                     jnlpArgs.add(slaveJnlpCredentials);
                 }
                 // force a headless mode
-                jnlpArgs.add("-headless");
+                // jnlpArgs.add("-headless");
                 return jnlpArgs;
             } catch (SSLHandshakeException e) {
                 if(e.getMessage().contains("PKIX path building failed")) {
@@ -608,7 +608,7 @@ public class Launcher {
         } finally {
             w.close();
         }
-        
+
         // accept just one connection and that's it.
         // when we are done, remove the port file to avoid stale port file
         Socket s;
@@ -657,7 +657,7 @@ public class Launcher {
                 To prevent the dead lock between GetFileType from _ioinit in C runtime and blocking read that ChannelReaderThread
                 would do on stdin, load the crypto DLL first.
 
-                This is a band-aid solution to the problem. Still searching for more fundamental fix. 
+                This is a band-aid solution to the problem. Still searching for more fundamental fix.
 
                 02f1e750 7c90d99a ntdll!KiFastSystemCallRet
                 02f1e754 7c810f63 ntdll!NtQueryVolumeInformationFile+0xc
@@ -724,7 +724,7 @@ public class Launcher {
         main(is, os, mode, performPing, null);
     }
     /**
-     * 
+     *
      * @param cache JAR cache to be used.
      *              If {@code null}, a default value will be used.
      * @since 2.24
@@ -742,7 +742,7 @@ public class Launcher {
 
         Channel channel = cb.build(is, os);
         System.err.println("channel started");
-        
+
         // Both settings are available since remoting-2.0
         long timeout = 1000 * Long.parseLong(
                 System.getProperty("hudson.remoting.Launcher.pingTimeoutSec", "240")),
@@ -781,7 +781,7 @@ public class Launcher {
                     JENKINS_VERSION_PROP_FILE);
             return UNKNOWN_JENKINS_VERSION_STR;
         }
-      
+
         try {
             props.load(is);
         } catch (IOException e) {
@@ -791,7 +791,7 @@ public class Launcher {
         }
         return props.getProperty("version", UNKNOWN_JENKINS_VERSION_STR);
     }
-    
+
     private static void closeWithLogOnly(Closeable stream, String name) {
         try {
             stream.close();
@@ -804,9 +804,9 @@ public class Launcher {
      * Version number of Hudson this agent.jar is from.
      */
     public static final String VERSION = computeVersion();
-    
+
     private static final String JENKINS_VERSION_PROP_FILE = "hudson-version.properties";
     private static final String UNKNOWN_JENKINS_VERSION_STR = "?";
-    
+
     private static final Logger LOGGER = Logger.getLogger(Launcher.class.getName());
 }
